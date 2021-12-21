@@ -11,3 +11,10 @@ ALTER TABLE tbcarga MODIFY ID INT AUTO_INCREMENT PRIMARY KEY
 
 -- Converter de ',' para '.'
 select cast(REPLACE(preco, ',', '.') as float ) p from tabela order by p
+
+-- VBA Sintaxe
+"INSERT INTO TBITEM_TEMP(PEDIDO,CODIGO,VERSAO,DESCRICAO,PERC_IPI,VALOR_UN,QUANTIDADE,UNIDADE_MEDIDA,PESO_ITEM,PESO_PADRAO,COD_CLIENTE,CLIENTE,CIDADE,UF,SEQUENCIA,VENDEDOR,USER_ID) " & _
+  " VALUES('" & Pedido & "','" & codigo & "','" & versao & "','" & descricao & "'," & _
+  " cast(REPLACE('" & PERC_IPI & "', ',', '.') as float ),cast(REPLACE('" & VALOR_UN & "', ',', '.') as float ),cast(REPLACE('" & quantidade & "', ',', '.') as float )," & _
+  "'" & UNIDADE_MEDIDA & "',cast(REPLACE('" & PESO_ITEM & "', ',', '.') as float ),cast(REPLACE('" & PESO_PADRAO & "', ',', '.') as float )," & _
+  " '" & COD_CLIENTE & "','" & CLIENTE & "','" & CIDADE & "','" & UF & "'," & SEQUENCIA & ",'" & VENDEDOR & "'," & UserID & ")"
