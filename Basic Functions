@@ -19,6 +19,14 @@ select cast(REPLACE(preco, ',', '.') as float ) p from tabela order by p
   "'" & UNIDADE_MEDIDA & "',cast(REPLACE('" & PESO_ITEM & "', ',', '.') as float ),cast(REPLACE('" & PESO_PADRAO & "', ',', '.') as float )," & _
   " '" & COD_CLIENTE & "','" & CLIENTE & "','" & CIDADE & "','" & UF & "'," & SEQUENCIA & ",'" & VENDEDOR & "'," & UserID & ")"
 
+
+--Criar novo DB
+create database cadastro
+default character set utf8
+default collate utf8_general_ci;
+
+
+
 -- Inserir tabelas
 use cadastros;
 create table pessoas(
@@ -29,3 +37,5 @@ peso float,
 altura float,
 nacionalidade varchar(20)
 );
+
+
