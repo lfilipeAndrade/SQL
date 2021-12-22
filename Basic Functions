@@ -18,3 +18,14 @@ select cast(REPLACE(preco, ',', '.') as float ) p from tabela order by p
   " cast(REPLACE('" & PERC_IPI & "', ',', '.') as float ),cast(REPLACE('" & VALOR_UN & "', ',', '.') as float ),cast(REPLACE('" & quantidade & "', ',', '.') as float )," & _
   "'" & UNIDADE_MEDIDA & "',cast(REPLACE('" & PESO_ITEM & "', ',', '.') as float ),cast(REPLACE('" & PESO_PADRAO & "', ',', '.') as float )," & _
   " '" & COD_CLIENTE & "','" & CLIENTE & "','" & CIDADE & "','" & UF & "'," & SEQUENCIA & ",'" & VENDEDOR & "'," & UserID & ")"
+
+-- Inserir tabelas
+use cadastros;
+create table pessoas(
+nome varchar(30),
+idade tinyint(3),
+sexo char(1),
+peso float,
+altura float,
+nacionalidade varchar(20)
+);
