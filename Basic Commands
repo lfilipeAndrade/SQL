@@ -19,6 +19,16 @@ select cast(REPLACE(preco, ',', '.') as float ) p from tabela order by p
   "'" & UNIDADE_MEDIDA & "',cast(REPLACE('" & PESO_ITEM & "', ',', '.') as float ),cast(REPLACE('" & PESO_PADRAO & "', ',', '.') as float )," & _
   " '" & COD_CLIENTE & "','" & CLIENTE & "','" & CIDADE & "','" & UF & "'," & SEQUENCIA & ",'" & VENDEDOR & "'," & UserID & ")"
 
+-- Buscar o maior valor de soma mensal dos últimos 12 meses
+SELECT 
+MAX(SUM(PESO)) AS Meta
+FROM 
+PCPAPPRODUCAO WHERE
+EMPRESA = 1 AND
+DATA_HORA_FIM >= TRUNC(sysdate - 365,'mm') AND 
+(ETAPA = 3 OR ETAPA = 70 OR ETAPA=31)
+GROUP BY TRUNC(DATA_HORA_FIM,'mm')
+
 
 --Criar novo DB
 create database cadastro
