@@ -40,4 +40,7 @@ create table pessoas(
   primary key (id)
 ) default charset  = utf8;
 
-
+-- Inserir uma nova coluna
+alter table pessoas
+add column profissao varchar(10) after nome;
+desc pessoas;
