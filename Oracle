@@ -1,6 +1,31 @@
 -- Retornar o primeiro dia do último mês
 add_months(trunc(sysdate,'mm'),-1)
--------------------------------------------------------------------------------------------------------------------------------------------|
+
+
+
+-- Converter o formato valores números com casas decimais de ',' para '.' 
+select cast(REPLACE(preco, ',', '.') as float ) p from tabela order by p;
+
+
+
+-- Sintaxe insert SQL em banco Oracle dentro de código VBA
+"INSERT INTO TBITEM_TEMP(PEDIDO,CODIGO,VERSAO,DESCRICAO,PERC_IPI,VALOR_UN,QUANTIDADE,UNIDADE_MEDIDA,PESO_ITEM,PESO_PADRAO,COD_CLIENTE,CLIENTE,CIDADE,UF,SEQUENCIA,VENDEDOR,USER_ID) " & _
+  " VALUES('" & Pedido & "','" & codigo & "','" & versao & "','" & descricao & "'," & _
+  " cast(REPLACE('" & PERC_IPI & "', ',', '.') as float ),cast(REPLACE('" & VALOR_UN & "', ',', '.') as float ),cast(REPLACE('" & quantidade & "', ',', '.') as float )," & _
+  "'" & UNIDADE_MEDIDA & "',cast(REPLACE('" & PESO_ITEM & "', ',', '.') as float ),cast(REPLACE('" & PESO_PADRAO & "', ',', '.') as float )," & _
+  " '" & COD_CLIENTE & "','" & CLIENTE & "','" & CIDADE & "','" & UF & "'," & SEQUENCIA & ",'" & VENDEDOR & "'," & UserID & ")"
+
+
+-- Buscar o maior valor de soma mensal da produção dos últimos 12 meses de etapas expecificas
+SELECT 
+MAX(SUM(PESO)) AS Meta
+FROM 
+PCPAPPRODUCAO WHERE
+EMPRESA = 1 AND
+DATA_HORA_FIM >= TRUNC(sysdate - 365,'mm') AND 
+(ETAPA = 3 OR ETAPA = 70 OR ETAPA=31)
+GROUP BY TRUNC(DATA_HORA_FIM,'mm')
+
 
 
 -- Retornar os funcionários do setor '102007' da produção que seu último apontamento de produção tem mais de 2 meses (operadores inativos) e seus status está como 'A' (Ativo)
