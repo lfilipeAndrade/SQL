@@ -9,34 +9,6 @@ UPDATE TBPEDIDO SET VALOR_UN = 17.75, QTD_ITEM = 850 WHERE ID = 898712
 
 ALTER TABLE tbcarga MODIFY ID INT AUTO_INCREMENT PRIMARY KEY
 
--- Converter de ',' para '.'
-select cast(REPLACE(preco, ',', '.') as float ) p from tabela order by p
-
--- VBA Sintaxe
-"INSERT INTO TBITEM_TEMP(PEDIDO,CODIGO,VERSAO,DESCRICAO,PERC_IPI,VALOR_UN,QUANTIDADE,UNIDADE_MEDIDA,PESO_ITEM,PESO_PADRAO,COD_CLIENTE,CLIENTE,CIDADE,UF,SEQUENCIA,VENDEDOR,USER_ID) " & _
-  " VALUES('" & Pedido & "','" & codigo & "','" & versao & "','" & descricao & "'," & _
-  " cast(REPLACE('" & PERC_IPI & "', ',', '.') as float ),cast(REPLACE('" & VALOR_UN & "', ',', '.') as float ),cast(REPLACE('" & quantidade & "', ',', '.') as float )," & _
-  "'" & UNIDADE_MEDIDA & "',cast(REPLACE('" & PESO_ITEM & "', ',', '.') as float ),cast(REPLACE('" & PESO_PADRAO & "', ',', '.') as float )," & _
-  " '" & COD_CLIENTE & "','" & CLIENTE & "','" & CIDADE & "','" & UF & "'," & SEQUENCIA & ",'" & VENDEDOR & "'," & UserID & ")"
-
--- Buscar o maior valor de soma mensal dos últimos 12 meses
-SELECT 
-MAX(SUM(PESO)) AS Meta
-FROM 
-PCPAPPRODUCAO WHERE
-EMPRESA = 1 AND
-DATA_HORA_FIM >= TRUNC(sysdate - 365,'mm') AND 
-(ETAPA = 3 OR ETAPA = 70 OR ETAPA=31)
-GROUP BY TRUNC(DATA_HORA_FIM,'mm')
-
-
---Criar novo DB
-create database cadastro
-default character set utf8
-default collate utf8_general_ci;
-
-
-
 -- Inserir tabelas
 use cadastro;
 create table pessoas(
