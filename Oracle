@@ -1,3 +1,6 @@
+-- Retornar o primeiro dia do último mês
+add_months(trunc(sysdate,'mm'),-1)
+
 
 -- Retornar os funcionários do setor '102007' da produção que seu último apontamento de produção tem mais de 2 meses (operadores inativos)
 
