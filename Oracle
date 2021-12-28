@@ -1,0 +1,16 @@
+
+-- Retornar os funcionários do setor '102007' da produção que seu último apontamento de produção tem mais de 2 meses (operadores inativos)
+
+select asdusuario.cpf,asdusuario.nome,asdusuario.situacao, max(pcpapproducao.data_hora_fim)
+ from asdusuario,asdusuemp, pcpapproducao
+where 
+asdusuario.cpf = asdusuemp.cpf and
+pcpapproducao.usuario = asdusuemp.cpf and
+asdusuario.tipo_usuario=4 and 
+asdusuemp.centro_custo = '102007' and 
+asdusuario.empresa_padrao = '1' and 
+asdusuario.situacao = 'A' 
+having max(pcpapproducao.data_hora_fim) <= add_months(trunc(sysdate,'mm'),-2)
+group by asdusuario.cpf, asdusuario.nome, asdusuario.situacao
+
+--------------------------------------------------------------------------------------------------------------------------------------------
