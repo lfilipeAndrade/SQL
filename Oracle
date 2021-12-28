@@ -3,7 +3,7 @@ add_months(trunc(sysdate,'mm'),-1)
 -------------------------------------------------------------------------------------------------------------------------------------------|
 
 
--- Retornar os funcionários do setor '102007' da produção que seu último apontamento de produção tem mais de 2 meses (operadores inativos)
+-- Retornar os funcionários do setor '102007' da produção que seu último apontamento de produção tem mais de 2 meses (operadores inativos) e seus status está como 'A' (Ativo)
 
 select asdusuario.cpf,asdusuario.nome,asdusuario.situacao, max(pcpapproducao.data_hora_fim)
  from asdusuario,asdusuemp, pcpapproducao
