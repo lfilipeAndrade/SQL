@@ -31,5 +31,6 @@ alter table pessoas
 add column profissao varchar(10) after nome;
 desc pessoas;
 
+-- Atribuir chave estrangeira na tabela
 ALTER TABLE Orders
 ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
