@@ -30,3 +30,6 @@ create table pessoas(
 alter table pessoas
 add column profissao varchar(10) after nome;
 desc pessoas;
+
+ALTER TABLE Orders
+ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
