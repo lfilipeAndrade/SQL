@@ -41,3 +41,15 @@ ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
 --Remover registros duplicado de uma tabela
 DELETE tb1 FROM `tbvencimento_iniflex` AS tb1, `tbvencimento_iniflex` AS tb2
     WHERE tb1.`codigo`<tb2.`codigo` AND tb1.`pedido`=tb2.`pedido` AND tb1.`parcela`=tb2.`parcela` AND tb1.`dias`=tb2.`dias`;
+    
+-- Estrutura CASE WHEN
+SELECT 
+	CASE 
+		WHEN VOLUME_EXPEDICAO > 0 THEN sum(VOLUME_EXPEDICAO) 
+        WHEN unidade_medida = 'KG' THEN ceiling(sum(QTD_ITEM/PESO_PADRAO)) 
+        ELSE Sum(QTD_ITEM) 
+	END 
+	AS volumes 
+	FROM 
+		tbpedido where 
+        carga = 1727;
