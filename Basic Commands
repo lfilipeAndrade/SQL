@@ -53,3 +53,24 @@ SELECT
 	FROM 
 		tbpedido where 
         carga = 1727;
+-- Case when no order by
+select 
+    pedidos.sequencia, pedidos.item, pedidos.versao, 
+    pedidos.unitario, pedidos.quantidade_ep
+ from 
+    pedidos ,caditem 
+ where 
+    pedidos.pedido = 18303
+    and pedidos.empresa = 1  
+    and caditem.empresa = 1  
+    and caditem.codigo  = pedidos.item 
+ order by 
+    case 
+        when caditem.grupo = 2 and caditem.subgrupo = 3 then 1
+        when caditem.grupo = 1 and caditem.subgrupo = 10 then 2
+        when caditem.grupo = 3 and caditem.subgrupo = 2 then 3
+        when caditem.grupo = 2 and caditem.subgrupo = 15 then 4
+        when caditem.grupo = 4 and caditem.subgrupo = 1 then 5
+        when caditem.grupo = 2 and caditem.subgrupo = 14 then 6
+        when caditem.grupo = 255 and caditem.subgrupo = 4 then 7
+    end;
