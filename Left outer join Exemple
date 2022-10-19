@@ -1,0 +1,31 @@
+-- Consultar veículos no pátio 
+select 
+	tbcarros.placa, 
+    tbcarros.marca,
+    tbregistrosaida.datachegada,
+    tbregistrosaida.id
+from 
+	tbcarros
+left outer join (SELECT placa, MAX(id) as id
+FROM tbregistrosaida GROUP BY placa) as L2 on tbcarros.placa = L2.placa
+left join tbregistrosaida on  L2.id = tbregistrosaida.id
+where 
+	(
+		(tbregistrosaida.datachegada is null and tbregistrosaida.id is null) or
+        (tbregistrosaida.datachegada is not null and tbregistrosaida.id is not null)
+	);
+  
+  
+ -- Consulta veículos em viagem
+ select 
+	tbcarros.placa, 
+	tbcarros.marca,
+   tbcarros.kilometragem
+from 
+	tbcarros
+left join tbregistrosaida on tbregistrosaida.placa = tbcarros.placa
+where 
+	tbcarros.situacao = 'A' and
+	tbregistrosaida.kmchegada is null and
+    tbregistrosaida.datachegada is null and
+    tbregistrosaida.id is not null;
