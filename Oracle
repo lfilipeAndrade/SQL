@@ -42,4 +42,8 @@ asdusuario.situacao = 'A'
 having max(pcpapproducao.data_hora_fim) <= add_months(trunc(sysdate,'mm'),-2)
 group by asdusuario.cpf, asdusuario.nome, asdusuario.situacao
 
+
+-- Retornar as ultimas queries executadas no banco
+SELECT sql_fulltext,first_load_time,rows_processed,parsing_schema_name,module FROM V$SQLAREA  order by first_load_time desc;
+
 --------------------------------------------------------------------------------------------------------------------------------------------|
